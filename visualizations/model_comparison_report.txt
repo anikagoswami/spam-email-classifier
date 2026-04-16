@@ -1,0 +1,62 @@
+============================================================
+SPAM EMAIL CLASSIFICATION - MODEL COMPARISON REPORT
+============================================================
+
+INDIVIDUAL MODEL PERFORMANCE
+----------------------------------------
+
+RNN Results:
+  Accuracy:  0.8500
+  Precision: 0.8300
+  Recall:    0.8000
+  F1 Score:  0.8150
+
+LSTM Results:
+  Accuracy:  0.9200
+  Precision: 0.9100
+  Recall:    0.8900
+  F1 Score:  0.9000
+
+GRU Results:
+  Accuracy:  0.9000
+  Precision: 0.8800
+  Recall:    0.8700
+  F1 Score:  0.8750
+
+
+BEST MODEL (by F1 Score): LSTM
+F1 Score: 0.9000
+
+
+DETAILED ANALYSIS
+----------------------------------------
+
+Accuracy Ranking:
+  1. LSTM: 0.9200
+  2. GRU: 0.9000
+  3. RNN: 0.8500
+
+Precision Ranking:
+  1. LSTM: 0.9100
+  2. GRU: 0.8800
+  3. RNN: 0.8300
+
+Recall Ranking:
+  1. LSTM: 0.8900
+  2. GRU: 0.8700
+  3. RNN: 0.8000
+
+F1 Score Ranking:
+  1. LSTM: 0.9000
+  2. GRU: 0.8750
+  3. RNN: 0.8150
+
+
+RECOMMENDATIONS
+----------------------------------------
+
+The LSTM model performed best, likely due to its ability to capture
+long-term dependencies in email text sequences.
+
+For production deployment, consider using the best performing model
+while also factoring in inference speed and model size.

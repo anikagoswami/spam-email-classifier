@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAILLY - Live Spam Email Classification</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="brand">
+                <div class="logo">MAILLY</div>
+                <div class="tagline">Smart Email Security</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item active" data-section="inbox">
+                    <span class="nav-icon">📧</span>
+                    <span class="nav-text">Inbox</span>
+                </div>
+                <div class="nav-item" data-section="spam">
+                    <span class="nav-icon">🚫</span>
+                    <span class="nav-text">Spam Folder</span>
+                </div>
+                <div class="nav-item" data-section="compose">
+                    <span class="nav-icon">✍️</span>
+                    <span class="nav-text">Compose</span>
+                </div>
+                <div class="nav-item" data-section="classify">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-text">Classify Email</span>
+                </div>
+                <div class="nav-item" data-section="analytics">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Analytics</span>
+                </div>
+            </nav>
+            
+            <div class="user-info">
+                <div class="user-avatar">U</div>
+                <div class="user-details">
+                    <div class="user-name">User</div>
+                    <div class="user-status">Online</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Inbox Section -->
+            <div class="section active" id="inbox-section">
+                <div class="section-header">
+                    <h1>Inbox</h1>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search emails...">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                </div>
+                
+                <div class="email-list">
+                    <div class="email-item spam" data-email-id="1">
+                        <div class="email-sender">noreply@winner.com</div>
+                        <div class="email-subject">CONGRATULATIONS! You've won $1000!</div>
+                        <div class="email-preview">Click here to claim your prize now! Limited time offer...</div>
+                        <div class="email-time">2 hours ago</div>
+                        <div class="email-label spam-label">SPAM</div>
+                    </div>
+                    
+                    <div class="email-item" data-email-id="2">
+                        <div class="email-sender">john.doe@company.com</div>
+                        <div class="email-subject">Meeting scheduled for tomorrow</div>
+                        <div class="email-preview">Hi, I've scheduled our meeting for 10 AM tomorrow...</div>
+                        <div class="email-time">4 hours ago</div>
+                        <div class="email-label normal-label">NORMAL</div>
+                    </div>
+                    
+                    <div class="email-item spam" data-email-id="3">
+                        <div class="email-sender">urgent@security.com</div>
+                        <div class="email-subject">URGENT: Your account has been compromised</div>
+                        <div class="email-preview">Your account security has been breached. Please verify...</div>
+                        <div class="email-time">6 hours ago</div>
+                        <div class="email-label spam-label">SPAM</div>
+                    </div>
+                    
+                    <div class="email-item" data-email-id="4">
+                        <div class="email-sender">mom@family.com</div>
+                        <div class="email-subject">Dinner this weekend?</div>
+                        <div class="email-preview">Are you free for dinner this weekend? Let me know...</div>
+                        <div class="email-time">1 day ago</div>
+                        <div class="email-label normal-label">NORMAL</div>
+                    </div>
+                    
+                    <div class="email-item spam" data-email-id="5">
+                        <div class="email-sender">offers@cheapdeals.com</div>
+                        <div class="email-subject">50% OFF Everything - Today Only!</div>
+                        <div class="email-preview">Huge savings on all products. Use code SAVE50 at checkout...</div>
+                        <div class="email-time">2 days ago</div>
+                        <div class="email-label spam-label">SPAM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spam Folder Section -->
+            <div class="section" id="spam-section">
+                <div class="section-header">
+                    <h1>Spam Folder</h1>
+                    <div class="spam-stats">
+                        <span id="spam-count">0</span> spam emails detected
+                    </div>
+                </div>
+                
+                <div class="email-list" id="spam-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>No spam emails yet. Classified emails will appear here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compose Section -->
+            <div class="section" id="compose-section">
+                <div class="section-header">
+                    <h1>Compose Email</h1>
+                </div>
+                
+                <div class="compose-form">
+                    <div class="form-group">
+                        <label>To:</label>
+                        <input type="email" placeholder="recipient@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Subject:</label>
+                        <input type="text" placeholder="Email subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea placeholder="Write your message here..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary">Save Draft</button>
+                        <button class="btn btn-primary">Send Email</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classify Email Section -->
+            <div class="section" id="classify-section">
+                <div class="section-header">
+                    <h1>Live Email Classification</h1>
+                    <p class="subtitle">Paste any email text below to classify it as spam or not spam</p>
+                </div>
+                
+                <div class="classify-container">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="model-select">Select Model</label>
+                            <select id="model-select">
+                                <option value="">Best Model (Auto)</option>
+                                <option value="RNN">RNN</option>
+                                <option value="LSTM">LSTM</option>
+                                <option value="GRU">GRU</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email-input">Email Text</label>
+                            <textarea 
+                                id="email-input" 
+                                placeholder="Paste your email text here..."
+                                rows="10"
+                            ></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-primary" id="classify-btn">
+                                <span class="btn-icon">🔍</span>
+                                Classify Email
+                            </button>
+                            <button class="btn btn-secondary" id="clear-btn">Clear</button>
+                            <button class="btn btn-secondary" id="sample-btn">Load Sample</button>
+                        </div>
+                    </div>
+                    
+                    <div class="result-section">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <h3>Classification Result</h3>
+                                <div class="result-status" id="result-status">No prediction yet</div>
+                            </div>
+                            
+                            <div class="result-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Prediction:</span>
+                                    <span class="detail-value" id="prediction-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Confidence:</span>
+                                    <span class="detail-value" id="confidence-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Model Used:</span>
+                                    <span class="detail-value" id="model-value">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Timestamp:</span>
+                                    <span class="detail-value" id="timestamp-value">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="confidence-bar">
+                                <div class="bar-label">Spam Probability</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="confidence-bar"></div>
+                                </div>
+                                <div class="bar-percentage" id="bar-percentage">0%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-actions">
+                            <button class="btn btn-ghost" id="feedback-btn" disabled>Report Incorrect</button>
+                            <button class="btn btn-ghost" id="copy-btn" disabled>Copy Result</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="section" id="analytics-section">
+                <div class="section-header">
+                    <h1>Classification Analytics</h1>
+                    <p class="subtitle">View model performance and classification statistics</p>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📧</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-classifications">0</div>
+                            <div class="stat-label">Total Classifications</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="spam-detected">0</div>
+                            <div class="stat-label">Spam Detected</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="ham-detected">0</div>
+                            <div class="stat-label">Ham Detected</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="avg-confidence">0%</div>
+                            <div class="stat-label">Avg Confidence</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-info">
+                    <h3>Active Model Information</h3>
+                    <div class="model-details" id="model-details">
+                        <p>Loading model information...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Reading Panel -->
+        <div class="email-panel" id="email-panel">
+            <div class="panel-header">
+                <button class="close-btn" id="close-panel">×</button>
+                <h2>Email Details</h2>
+            </div>
+            <div class="panel-content">
+                <div class="email-header">
+                    <div class="email-from">
+                        <strong>From:</strong> <span id="email-from">-</span>
+                    </div>
+                    <div class="email-to">
+                        <strong>To:</strong> <span id="email-to">you@example.com</span>
+                    </div>
+                    <div class="email-subject">
+                        <strong>Subject:</strong> <span id="email-subject">-</span>
+                    </div>
+                    <div class="email-date">
+                        <strong>Date:</strong> <span id="email-date">-</span>
+                    </div>
+                </div>
+                <div class="email-body">
+                    <div id="email-body-content">Loading email content...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
