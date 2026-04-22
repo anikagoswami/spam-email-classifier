@@ -288,4 +288,3 @@ if __name__ == "__main__":
     test_text = "Win a free iPhone now! Click here!"
     transformed = preprocessor.transform_single_text(test_text)
     print(f"\nTest text: '{test_text}'")
-    print(f"Transformed shape: {transformed.shape}")
