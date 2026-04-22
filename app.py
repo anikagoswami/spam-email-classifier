@@ -7,7 +7,7 @@ import os
 import numpy as np
 import pickle
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from datetime import datetime
 
@@ -41,6 +41,16 @@ def load_best_model():
         if os.path.exists(best_model_info_path):
             with open(best_model_info_path, 'rb') as f:
                 best_model_info = pickle.load(f)
+            
+            # Load results
+            results_path = os.path.join(MODEL_DIR, 'results.pkl')
+            if os.path.exists(results_path):
+                with open(results_path, 'rb') as f:
+                    results = pickle.load(f)
+                best_model_info['results'] = results
+            else:
+                print("Warning: results.pkl not found")
+                best_model_info['results'] = {}
             
             best_model_name = best_model_info['best_model_name']
             
@@ -133,7 +143,7 @@ def classify_email(email_text, model_name=None):
         
         # If model_name not specified, use best model
         if not model_name:
-            model_name = best_model_info['best_model_name']
+            model_name = 'GRU'  # Using GRU as it performs better on diverse spam
         
         # Check if requested model exists
         if model_name not in loaded_models:
@@ -148,9 +158,9 @@ def classify_email(email_text, model_name=None):
         model = loaded_models[model_name]
         
         # Make prediction with adjusted threshold for better spam detection
-        # Using 0.45 threshold instead of 0.5 to be more sensitive to spam
+        # Using 0.1 threshold instead of 0.5 to be more sensitive to spam
         prediction_proba = model.predict(processed_text)[0]
-        prediction = int(prediction_proba > 0.45)
+        prediction = int(prediction_proba > 0.1)
         
         # Convert to human readable format
         result = {
@@ -173,17 +183,14 @@ def classify_email(email_text, model_name=None):
 
 @app.route('/')
 def home():
-    """Home endpoint with API information."""
-    return jsonify({
-        'message': 'MAILLY - Live Spam Email Classification API',
-        'version': '1.0.0',
-        'endpoints': {
-            '/predict': 'POST - Classify email as spam or not spam',
-            '/models': 'GET - Get information about loaded models',
-            '/health': 'GET - Check API health status'
-        },
-        'status': 'running'
-    })
+    """Serve the frontend."""
+    return send_from_directory('frontend', 'index.html')
+
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    """Serve static files from frontend directory."""
+    return send_from_directory('frontend', filename)
 
 
 @app.route('/health')
