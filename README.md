@@ -45,7 +45,7 @@ MAILLY uses a carefully designed color palette:
 Mailly-Spam-Classifier/
 ├── dataset/                    # Email dataset (CSV format)
 ├── preprocessing/              # Text preprocessing modules
-│   └── text_cleaning.py       # Text cleaning and Word2Vec
+│   └── text_cleaning.py       # Text cleaning and tokenization
 ├── models/                     # Neural network model implementations
 │   ├── rnn_model.py           # Simple RNN model
 │   ├── lstm_model.py          # LSTM model
@@ -248,11 +248,12 @@ The system generates several types of visualizations:
 
 ### Model Configuration
 Adjust model parameters in the training script:
-- Vocabulary size
-- Embedding dimensions
-- Sequence length
+- Vocabulary size (for tokenization)
+- Embedding dimensions (trained during model training)
+- Maximum sequence length
 - Training epochs
 - Batch size
+- Dropout rate
 
 ## 🐛 Troubleshooting
 
